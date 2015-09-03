@@ -7,7 +7,7 @@ require 'json'
 set :port, '80'
 
 get '/data.jsonp' do
-  headers 'Access-Control-Allow-Origin' => 'http://example.com'
+  # headers 'Access-Control-Allow-Origin' => 'http://example.com'
   content_type 'text/javascript'
 
   data = {
@@ -26,7 +26,7 @@ get '/ajax.js' do
 end
 
 get '/event.js' do
-  headers 'Access-Control-Allow-Origin' => 'http://example.com'
+  # headers 'Access-Control-Allow-Origin' => 'http://example.com'
   content_type 'text/javascript'
 
   data = {
