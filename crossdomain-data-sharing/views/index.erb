@@ -1,0 +1,64 @@
+<html>
+<head>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="http://example.org/data.jsonp"></script>
+<script type="text/javascript" src="http://example.net/event.js"></script>
+
+<script type="text/javascript">
+function showData(data) {
+	var element = document.getElementById('data');
+	if (data) {
+		element.innerHTML = data.text;
+	} else {
+		element.innerHTML = '<em>No data</em>';
+	}
+}
+
+function dataFromScriptTag() {
+	showData(window.jsData);
+}
+
+function dataFromDynamicScriptTag(){
+	document.write(unescape("%3Cscript src='http://example.net/data.jsonp' type='text/javascript'%3E%3C/script%3E"));
+}
+
+function dataFromAJAX() {
+	$.get('http://example.net/ajax.js', function(data) {
+		showData(data);
+	})
+}
+
+function dataFromEvent() {
+	// Call the event contained within the external JavaScript file
+	dataViaEvent();
+}
+
+function dataFromAJAXEvent() {
+	dataViaEventFromAJAX();
+}
+
+document.addEventListener('dataLoaded', function(e) {
+	showData(e.detail)
+}, false);
+
+</script>
+
+</head>
+<body>
+
+<h1>Test</h1>
+
+<p>
+	<button onclick="dataFromScriptTag()">Load from JSONP</button>
+	<button onclick="dataFromEvent()">Load from Event</button>
+
+	<button onclick="dataFromAJAX()">Load from AJAX</button>
+	<button onclick="dataFromAJAXEvent()">Load from AJAX using Event</button>
+</p>
+
+<div id="data" style="border: 1px solid #000">&nbsp;</div>
+
+</body>
+</html>
