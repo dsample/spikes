@@ -1,0 +1,13 @@
+<html>
+<head>
+<script>
+window.addEventListener("focus", function(event) { document.getElementById('message').innerHTML = "window has focus: " + new Date(); }, false);
+window.addEventListener("blur", function(event) { document.getElementById('message').innerHTML = "window lost focus"; }, false);
+</script>
+</head>
+<body>
+
+<span id="message"></span>
+
+</body>
+</html>
